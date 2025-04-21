@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <form method="POST">
+        <h2>Bienvenido</h2>
+        <p class="subtitle">Iniciá sesión para continuar</p>
+        {{ form.hidden_tag() }}
+        {{ form.email(class="form-control", placeholder="Correo electrónico") }}
+        {{ form.password(class="form-control", placeholder="Contraseña") }}
+        <button type="submit" class="btn-primary">Iniciar sesión</button>
+        <p class="register">¿No tienes cuenta? <a href="{{ url_for('registro') }}">Registrarse</a></p>
+    </form>
+</div>
+
+{% endblock %}

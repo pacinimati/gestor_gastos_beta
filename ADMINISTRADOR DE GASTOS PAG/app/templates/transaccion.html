@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <form method="POST">
+        <h2>Registrar Transacción</h2>
+        <p class="subtitle">Completá los datos para registrar una nueva transacción</p>
+
+        {{ form.hidden_tag() }}
+
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <ul class="flash-messages">
+                    {% for message in messages %}
+                        <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+
+        {{ form.monto(class="form-control", placeholder="Monto") }}
+        {{ form.categoria(class="form-control", placeholder="Categoría") }}
+        {{ form.tipo(class="form-control", placeholder="Tipo") }}
+
+        <button type="submit" class="btn-primary">Registrar</button>
+    </form>
+</div>
+{% endblock %}

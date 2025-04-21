@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="dashboard-container">
+    <h2 class="dashboard-greeting">Hola, {{ current_user.username }} 👋</h2>
+
+    <div class="totals">
+        <div class="card ingreso">
+            <h3>Ingresos</h3>
+            <p class="monto">${{ total_ingresos }}</p>
+        </div>
+        <div class="card egreso">
+            <h3>Egresos</h3>
+            <p class="monto">${{ total_egresos }}</p>
+        </div>
+    </div>
+
+    <div class="card transacciones">
+        <h3>Transacciones recientes</h3>
+        <div class="tabla-wrapper">
+            <table class="tabla-transacciones">
+                <thead>
+                    <tr>
+                        <th>Monto</th>
+                        <th>Categoría</th>
+                        <th>Tipo</th>
+                        <th>Fecha</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for transaccion in transacciones %}
+                    <tr>
+                        <td>${{ transaccion.monto }}</td>
+                        <td>{{ transaccion.categoria }}</td>
+                        <td class="tipo {{ transaccion.tipo|lower }}">{{ transaccion.tipo }}</td>
+                        <td>{{ transaccion.fecha.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
